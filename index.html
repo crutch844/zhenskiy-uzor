@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Женский Узор</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@1,500;1,600;1,700&family=Manrope:wght@400;500;600;700;800&display=swap">
+<style>
+/* Ретро-иллюстративный стиль: кремовый фон, тёмная обводка 2px, жёсткие тени со сдвигом, пастельные блоки, курсивные засечки */
+:root{
+  --bg:#fbf3e6; --surface:#fffaf2; --ink:#2a211f; --muted:#6e605a; --line:#2a211f; --soft:#f3e7d6;
+  --pink:#f9c2d1; --butter:#ffdf7e; --sage:#bcd39a; --sky:#b9dbea; --lilac:#d6c8f5; --coral:#e2553f;
+  --accent:#e2553f; --accent-ink:#fffaf2;
+  --c1:#e2553f; --c2:#f08a3c; --c3:#e9b824; --c4:#6fa257; --c5:#4ea6cf; --c6:#5b62c9; --c7:#9a62d1; --off:#e7dccb;
+  --p1:#f9b9ad; --p2:#fcd0a6; --p3:#ffe28f; --p4:#cfe3b0; --p5:#bfe0ef; --p6:#cfd1f5; --p7:#e3cdf5;
+  --anya:#c43d4f; --lena:#d9638a; --nastya:#b88300; --angelina:#3f8a6c;
+  --hard:3px 3px 0 var(--ink); --hard-lg:5px 5px 0 var(--ink);
+  --r:18px;
+  --display:"Lora",Georgia,serif; --body:"Manrope",-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5}
+body{min-height:100dvh;padding-bottom:calc(92px + env(safe-area-inset-bottom,0px));background-image:radial-gradient(color-mix(in srgb,var(--ink) 10%,transparent) 1px,transparent 1px);background-size:18px 18px}
+h1,h2,h3{font-family:var(--display);font-style:italic;font-weight:700;margin:0;line-height:1.08;letter-spacing:-.01em;text-wrap:balance}
+h1{font-size:2.05rem}
+p{margin:0;text-wrap:pretty}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+button:focus-visible{outline:3px solid var(--c5);outline-offset:3px;border-radius:12px}
+.screen{display:grid;gap:16px;padding:20px 18px 10px;max-width:520px;margin:0 auto;position:relative}
+.label{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);font-weight:800}
+.muted{color:var(--muted)}
+.card{background:var(--surface);border:2px solid var(--ink);border-radius:var(--r);padding:16px;box-shadow:var(--hard-lg)}
+.card.pink{background:var(--pink)} .card.butter{background:var(--butter)} .card.sage{background:var(--sage)} .card.sky{background:var(--sky)} .card.lilac{background:var(--lilac)}
+.row{display:flex;align-items:center;gap:12px}
+.between{justify-content:space-between}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:52px;border-radius:14px;background:var(--accent);color:var(--accent-ink);font-weight:800;font-size:1rem;border:2px solid var(--ink);box-shadow:var(--hard);transition:transform .15s,box-shadow .15s}
+.btn:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--ink)}
+.btn.ghost{background:var(--surface);color:var(--ink)}
+.btn.yellow{background:var(--butter);color:var(--ink)}
+.btn[disabled]{opacity:.45;pointer-events:none}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;font-weight:800;padding:3px 10px;border-radius:99px;background:var(--surface);color:var(--ink);border:1.5px solid var(--ink)}
+.pill.live{background:var(--coral);color:#fff}
+.pill.live::before{content:"";width:6px;height:6px;border-radius:50%;background:#fff}
+.test-banner{font-size:.72rem;text-align:center;padding:6px;background:var(--ink);color:var(--bg);font-weight:700;letter-spacing:.02em}
+.doodle{position:absolute;pointer-events:none;stroke:var(--ink);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+/* Узор */
+.hello{position:relative;padding-right:56px}
+.hello h1{font-size:2.3rem}
+.weave-card{display:grid;gap:12px}
+.weave{width:100%;height:auto;display:block}
+.threads{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.thr{display:grid;justify-items:center;gap:5px;font-size:.62rem;color:var(--muted);text-align:center;line-height:1.15;font-weight:600}
+.thr i{width:18px;height:18px;border-radius:50%;background:var(--off);border:2px solid var(--ink)}
+.thr.done i{background:var(--c)}
+.thr.now i{background:repeating-linear-gradient(45deg,var(--c) 0 3px,var(--surface) 3px 6px)}
+.thr.now{color:var(--ink);font-weight:800}
+.progress{height:10px;border-radius:6px;background:var(--surface);border:2px solid var(--ink);overflow:hidden}
+.progress b{display:block;height:100%;background:var(--accent)}
+.today{display:grid;gap:12px}
+.lesson{display:grid;grid-template-columns:58px 1fr;gap:12px;align-items:center}
+.cover{width:58px;height:58px;border-radius:14px;display:grid;place-items:center;background:var(--surface);border:2px solid var(--ink);color:var(--ink);font-family:var(--display);font-style:italic;font-weight:700;font-size:1.6rem;box-shadow:var(--hard)}
+.lesson b{display:block;font-size:1.02rem;line-height:1.3}
+.who{font-weight:800}
+.list{display:grid;gap:0;padding:6px 16px}
+.item{display:grid;grid-template-columns:46px 1fr auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1.5px dashed color-mix(in srgb,var(--ink) 35%,transparent)}
+.item:last-child{border-bottom:0}
+.day{font-weight:800;font-size:.85rem;text-align:center;line-height:1.1;border:2px solid var(--ink);border-radius:12px;padding:6px 0;background:var(--surface)}
+.day small{display:block;font-weight:600;font-size:.68rem;color:var(--muted)}
+.item.today-row .day{background:var(--butter)}
+.item b{display:block;font-size:.93rem;line-height:1.3}
+.item small{color:var(--muted)}
+
+/* Тарифы */
+.plans{display:grid;gap:12px}
+.plan{display:grid;grid-template-columns:24px 1fr auto;gap:12px;align-items:center;text-align:left;padding:14px;border-radius:16px;border:2px solid var(--ink);background:var(--surface);box-shadow:var(--hard);transition:transform .15s,box-shadow .15s,background .2s}
+.plan:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.plan.sel{background:var(--butter)}
+.radio{width:22px;height:22px;border-radius:50%;border:2px solid var(--ink);display:grid;place-items:center;background:var(--surface)}
+.plan.sel .radio::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--ink)}
+.plan b{display:block}
+.plan small{color:var(--muted)}
+.price{text-align:right;font-variant-numeric:tabular-nums;font-weight:800;white-space:nowrap}
+.save{display:inline-block;margin-left:6px;font-size:.66rem;font-weight:800;padding:1px 6px;border-radius:99px;background:var(--sage);border:1.5px solid var(--ink);vertical-align:2px}
+
+.incl{display:grid;gap:10px}
+.ok{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:.92rem}
+.ok li{display:grid;grid-template-columns:20px 1fr;gap:8px;align-items:start}
+.ok li::before{content:"";width:18px;height:18px;margin-top:2px;border-radius:50%;border:1.5px solid var(--ink);background:var(--sage) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.2 2.2 4.8-4.8' fill='none' stroke='%232a211f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat}
+.ok li.plus{font-weight:800}
+.ok li.plus::before{background-color:var(--pink);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 4.5v7M4.5 8h7' fill='none' stroke='%232a211f' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E")}
+
+/* Консультации */
+.founders{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.f{display:grid;gap:4px;text-align:left;padding:14px;border-radius:16px;background:var(--bgc);border:2px solid var(--ink);box-shadow:var(--hard);transition:transform .15s,box-shadow .15s}
+.f:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.f.sel{box-shadow:var(--hard-lg);outline:3px solid var(--ink);outline-offset:-6px}
+.f b{font-family:var(--display);font-style:italic;font-weight:700;font-size:1.3rem}
+.f small{color:var(--ink);opacity:.75;font-size:.78rem;line-height:1.3}
+.slots{display:flex;flex-wrap:wrap;gap:8px}
+.slot{padding:9px 12px;border-radius:12px;border:2px solid var(--ink);background:var(--surface);font-size:.85rem;font-weight:700;font-variant-numeric:tabular-nums;box-shadow:2px 2px 0 var(--ink)}
+.slot.sel{background:var(--ink);color:var(--bg)}
+
+/* Квиз и карта */
+.bars{display:grid;gap:10px}
+.bar{display:grid;grid-template-columns:minmax(0,1.3fr) 1fr 26px;gap:10px;align-items:center;font-size:.82rem;font-weight:600}
+.bar .track{height:12px;border-radius:7px;background:var(--surface);border:1.5px solid var(--ink);overflow:hidden}
+.bar .track b{display:block;height:100%;background:var(--c)}
+.bar span:last-child{text-align:right;font-variant-numeric:tabular-nums;font-weight:800}
+
+/* Профиль */
+.sub{display:grid;gap:4px}
+.kv{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1.5px dashed color-mix(in srgb,var(--ink) 35%,transparent);font-size:.93rem}
+.kv:last-child{border-bottom:0}
+
+/* Таббар */
+.tabs{position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));z-index:10;max-width:500px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);background:var(--surface);border:2px solid var(--ink);border-radius:20px;box-shadow:var(--hard);padding:6px}
+.tab{display:grid;justify-items:center;gap:1px;padding:6px 0;border-radius:14px;font-size:.68rem;font-weight:700;color:var(--ink);transition:background .2s}
+.tab svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.tab[aria-current="page"]{background:var(--butter);outline:2px solid var(--ink);outline-offset:-2px}
+
+.toast{position:fixed;left:16px;right:16px;bottom:calc(100px + env(safe-area-inset-bottom,0px));z-index:20;max-width:488px;margin:0 auto;padding:12px 16px;border-radius:14px;background:var(--ink);color:var(--bg);font-weight:700;font-size:.9rem;opacity:0;transform:translateY(8px);transition:opacity .25s,transform .25s;pointer-events:none}
+.toast.show{opacity:1;transform:none}
+.fade{animation:fade .25s ease-out}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="test-banner">Тестовый режим: оплата и запись ненастоящие</div>
+<main id="app"></main>
+<nav class="tabs" id="tabs" aria-label="Разделы"></nav>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const tg = window.Telegram?.WebApp;
+try{ tg?.ready(); tg?.expand(); }catch(e){}
+const dark = tg?.colorScheme ? tg.colorScheme==="dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+try{ tg?.setHeaderColor("#fbf3e6"); tg?.setBackgroundColor("#fbf3e6"); }catch(e){}
+const firstName = tg?.initDataUnsafe?.user?.first_name || "Мария";
+
+/* ---------- данные (тестовые) ---------- */
+const THREADS = [
+  {c:"c1", name:"Тело и опора", short:"Тело"},
+  {c:"c2", name:"Сексуальность и удовольствие", short:"Удоволь­ствие"},
+  {c:"c3", name:"Сила и деньги", short:"Сила"},
+  {c:"c4", name:"Любовь и принятие", short:"Любовь"},
+  {c:"c5", name:"Голос и самовыражение", short:"Голос"},
+  {c:"c6", name:"Интуиция и подсознание", short:"Интуиция"},
+  {c:"c7", name:"Дух и высшее Я", short:"Дух"},
+];
+const NOW = 2; // текущая неделя (0-based): Сила и деньги
+const WEEK = [
+  {d:"Пн",n:1,who:"anya",t:"Самоценность: сколько я стою",kind:"Урок, 28 мин"},
+  {d:"Вт",n:2,who:"angelina",t:"Огонь в теле: сила и воля",kind:"Урок, 34 мин"},
+  {d:"Ср",n:3,who:"lena",t:"Стиль, в котором я сильная",kind:"Урок, 25 мин"},
+  {d:"Чт",n:4,who:"nastya",t:"Сказать вслух о своих деньгах",kind:"Урок, 22 мин"},
+  {d:"Пт",n:5,who:"anya",t:"Денежные сценарии моей семьи",kind:"Урок, 31 мин"},
+  {d:"Сб",n:6,who:"angelina",t:"Групповая йога",kind:"10:00 по Перми",live:true},
+  {d:"Вс",n:7,who:"lena",t:"Общий эфир всех четырёх",kind:"20:00 по Перми",live:true},
+];
+const TODAY = 2; // среда
+const P = {anya:["Аня","--anya","Психология, сексология",false],lena:["Лена","--lena","Проработка, поддержка, стиль",false],nastya:["Настя","--nastya","Голос, внутренний ребёнок",false],angelina:["Ангелина","--angelina","Йога, тело, границы",false]};
+const PLANS = [
+  {id:"trial",name:"Пробная неделя",note:"7 дней, вводный курс",price:99},
+  {id:"m1",name:"1 месяц",note:"1 990 ₽ в месяц",price:1990},
+  {id:"m3",name:"3 месяца",note:"1 663 ₽ в месяц",price:4990,save:"−16%"},
+  {id:"m6",name:"6 месяцев",note:"+ личная консультация",price:8990,save:"−25%"},
+  {id:"m12",name:"12 месяцев",note:"+ место на офлайн-встрече",price:14990,save:"−37%"},
+];
+const QUIZ = [
+ [0,"Как часто вы чувствуете себя отдохнувшей утром?",["Почти никогда","Редко","Чаще да, чем нет","Почти всегда"]],
+ [0,"Насколько вы чувствуете опору в жизни: дом, деньги на базовое, спокойствие?",["Живу в тревоге","Опора шаткая","В целом есть","Чувствую твёрдую почву"]],
+ [1,"Как часто вы позволяете себе удовольствие просто так, без повода?",["Не помню, когда в последний раз","Изредка, с чувством вины","Иногда","Регулярно и с радостью"]],
+ [1,"Насколько вам комфортно с вашей сексуальностью?",["Это закрытая тема","Есть стыд и зажимы","Скорее комфортно","Полностью принимаю себя"]],
+ [2,"Насколько вы довольны своим доходом?",["Совсем не довольна","Хватает впритык","В целом устраивает","Довольна и вижу рост"]],
+ [2,"Легко ли вам говорить «нет» и отстаивать своё?",["Почти не умею","Получается с трудом","Чаще получается","Легко и спокойно"]],
+ [3,"Как вы относитесь к себе, когда ошибаетесь?",["Жёстко ругаю себя","Долго переживаю","Стараюсь поддержать","Отношусь с теплом"]],
+ [3,"Чувствуете ли вы, что вас любят такой, какая вы есть?",["Нет","Редко","Скорее да","Да, чувствую"]],
+ [4,"Легко ли вам говорить о своих чувствах и желаниях вслух?",["Молчу и терплю","Говорю, но с трудом","Чаще говорю","Говорю свободно"]],
+ [4,"Есть ли у вас творчество, в котором вы проявляетесь?",["Нет совсем","Хочу, но не начинаю","Иногда","Да, регулярно"]],
+ [5,"Доверяете ли вы своей интуиции?",["Не слышу её","Слышу, но не доверяю","Иногда прислушиваюсь","Опираюсь на неё"]],
+ [5,"Понимаете ли вы, чего хотите именно вы, а не окружающие?",["Совсем не понимаю","Путаюсь","В целом понимаю","Ясно вижу свои желания"]],
+ [6,"Чувствуете ли вы смысл в том, как живёте?",["Нет","Иногда","Чаще да","Да, каждый день"]],
+ [6,"Есть ли у вас практики тишины: медитация, молитва, время наедине с собой?",["Нет","Очень редко","Иногда","Регулярно"]],
+];
+const SCORE = [1,4,7,10];
+const BASE = [
+ "5 студийных уроков в неделю от четырёх основательниц",
+ "Групповая йога вживую по субботам",
+ "Общий эфир по воскресеньям: вопросы и практика",
+ "Закрытое сообщество: знакомства, таланты и бизнесы",
+ "Все записи уроков и эфиров",
+ "Мой узор и карта сфер",
+ "Розыгрыш проходки на офлайн-встречу",
+];
+const INCL = {
+ trial:{base:false,list:["Вводный курс: 7 коротких уроков, по одному на каждую сферу","Доступ в закрытое сообщество","Групповая йога и общий эфир на этой неделе","Квиз и ваша карта сфер"],note:"Через 7 дней можно выбрать любой тариф."},
+ m1:{base:true,list:[],note:"Продлевается каждый месяц, отменить можно в любой момент."},
+ m3:{base:true,list:["Полный цикл из 7 сфер с запасом","Цена месяца ниже на 16%"],note:""},
+ m6:{base:true,list:["Личная консультация с основательницей, 50 минут","Заморозка подписки на месяц","Цена месяца ниже на 25%"],note:""},
+ m12:{base:true,list:["Гарантированное место на офлайн-встрече в Перми","2 личные консультации","Заморозка подписки дважды","Цена месяца ниже на 37%"],note:""},
+};
+const SLOTS = ["Пн 12:00","Пн 18:00","Ср 11:00","Чт 19:00","Пт 15:00"];
+
+/* ---------- состояние ---------- */
+const store = {
+  get(){ try{return JSON.parse(localStorage.getItem("uzor")||"{}")}catch(e){return{}} },
+  set(v){ try{localStorage.setItem("uzor",JSON.stringify(v))}catch(e){} }
+};
+let S = Object.assign({tab:"home",plan:"m3",paid:null,founder:"lena",slot:null,booked:null,quiz:[],qi:0,testDone:false}, store.get(), {tab:"home"});
+const save = () => store.set(S);
+if(!Array.isArray(S.quiz)||S.quiz.length<QUIZ.length){ if(S.testDone) S.testDone=false; if(!Array.isArray(S.quiz)) S.quiz=[]; }
+
+/* ---------- утилиты ---------- */
+const fmt = n => n.toLocaleString("ru-RU").replace(/ /g," ")+" ₽";
+// висячие предлоги: короткое слово + неразрывный пробел
+const nb = s => s.replace(/(^|[\s(«])([А-Яа-яЁё]{1,3}|—|–)\s+/g,(m,a,w)=>a+w+" ");
+const haptic = t => { try{ tg?.HapticFeedback?.impactOccurred(t||"light") }catch(e){} };
+const toast = msg => { const el=document.getElementById("toast"); el.textContent=msg; el.classList.add("show"); clearTimeout(toast.t); toast.t=setTimeout(()=>el.classList.remove("show"),2400); };
+
+function weaveSVG(){
+  // 7 волн; собранные нити цветные, будущие — бледные
+  const w=320,h=120; let paths="";
+  THREADS.forEach((t,i)=>{
+    const y=18+i*14, a=10+ (i%3)*4, ph=i*0.9;
+    let d=`M0 ${y}`;
+    for(let x=0;x<=w;x+=20){ d+=` L${x} ${(y+Math.sin(x/38+ph)*a*0.6).toFixed(1)}`; }
+    const done=i<NOW, now=i===NOW;
+    paths+=`<path d="${d}" fill="none" stroke="var(--${done||now?t.c:"off"})" stroke-width="${now?4:3.2}" stroke-linecap="round" ${now?'stroke-dasharray="6 6"':""}/>`;
+  });
+  return `<svg class="weave" viewBox="0 0 ${w} ${h}" role="img" aria-label="Мой узор: собрано ${NOW} нити из 7">${paths}</svg>`;
+}
+
+/* ---------- экраны ---------- */
+const DOODLE = {
+  spark:(st)=>`<svg class="doodle" style="${st}" width="38" height="38" viewBox="0 0 40 40"><path d="M20 3v34M3 20h34M8 8l24 24M32 8L8 32"/></svg>`,
+  star:(st)=>`<svg class="doodle" style="${st}" width="30" height="30" viewBox="0 0 30 30"><path d="M15 2c1 8 5 12 13 13-8 1-12 5-13 13-1-8-5-12-13-13 8-1 12-5 13-13z"/></svg>`,
+  heart:(st)=>`<svg class="doodle" style="${st}" width="40" height="36" viewBox="0 0 40 36"><path d="M20 33C8 24 3 17 4 10c1-6 9-9 14-2l2 3 2-3c5-7 13-4 14 2 1 7-4 14-16 23z"/></svg>`,
+  loop:(st)=>`<svg class="doodle" style="${st}" width="70" height="40" viewBox="0 0 70 40"><path d="M2 30c10 0 14-24 26-24 9 0 9 14 0 14s-6-18 8-18 16 26 32 26"/></svg>`,
+};
+const V = {};
+V.home = () => {
+  const t = THREADS[NOW], l = WEEK[TODAY];
+  return `
+  <div class="hello"><span class="label">Цикл 1 · Узор желаний</span><h1>${nb("Привет, "+firstName)}</h1>${DOODLE.spark("right:4px;top:4px")}</div>
+  <section class="card weave-card">
+    <div class="row between"><b>Мой узор</b><span class="muted" style="font-size:.85rem">${NOW} из 7 нитей</span></div>
+    ${weaveSVG()}
+    <div class="threads">${THREADS.map((x,i)=>`<div class="thr ${i<NOW?"done":i===NOW?"now":""}" style="--c:var(--${x.c})"><i></i>${x.short}</div>`).join("")}</div>
+  </section>
+  <section class="card today butter" style="--c:var(--${t.c})">
+    <div class="row between"><span class="label">Неделя ${NOW+1} · ${t.name}</span></div>
+    <div class="lesson"><div class="cover">${l.n}</div><div><b>${nb(l.t)}</b><small class="muted"><span class="who" style="color:var(${P[l.who][1]})">${P[l.who][0]}</span> · ${l.kind} · сегодня</small></div></div>
+    <button class="btn" data-act="watch">Смотреть урок</button>
+  </section>
+  <section class="card pink" style="position:relative">${DOODLE.heart("right:14px;top:12px")}
+    <div class="row between"><div><span class="pill live">Вживую</span><p style="margin-top:6px"><b>${nb("Общий эфир, воскресенье 20:00")}</b></p><small class="muted">${nb("Задайте вопрос заранее — ответим в эфире")}</small></div></div>
+    <button class="btn ghost" data-act="ask" style="margin-top:14px">Задать вопрос к эфиру</button>
+  </section>`;
+};
+V.week = () => {
+  const t = THREADS[NOW];
+  return `
+  <div style="position:relative"><span class="label">Неделя ${NOW+1} из 7</span><h1>${nb(t.name)}</h1>${DOODLE.star("right:0;top:-4px")}<p class="muted" style="margin-top:6px">${nb("Уроки выходят в 9:00 и остаются в записи. В выходные встречаемся вживую.")}</p></div>
+  <section class="card list" style="--c:var(--${t.c})">
+    ${WEEK.map((w,i)=>`<div class="item ${i===TODAY?"today-row":""}"><div class="day">${w.d}<small>${18+i} янв</small></div><div><b>${nb(w.t)}</b><small><span class="who" style="color:var(${P[w.who][1]})">${P[w.who][0]}</span> · ${w.kind}</small></div>${w.live?'<span class="pill live">Вживую</span>':i<TODAY?'<span class="pill">✓</span>':i===TODAY?'<span class="pill" style="color:var(--accent)">Сегодня</span>':""}</div>`).join("")}
+  </section>`;
+};
+V.consult = () => {
+  if(S.booked) return `
+  <div><span class="label">Консультация</span><h1>Вы записаны</h1></div>
+  <section class="card sub">
+    <div class="kv"><span class="muted">Специалистка</span><b>${P[S.booked.f][0]}</b></div>
+    <div class="kv"><span class="muted">Когда</span><b>${S.booked.slot}</b></div>
+    <div class="kv"><span class="muted">Формат</span><b>Видеосвязь, 50 мин</b></div>
+  </section>
+  <p class="muted">${nb("Бот пришлёт напоминание за день и за час до встречи.")}</p>
+  <button class="btn ghost" data-act="cancel">Отменить запись</button>`;
+  return `
+  <div style="position:relative"><span class="label">Личная работа</span><h1>Консультация</h1>${DOODLE.loop("right:-4px;top:0")}<p class="muted" style="margin-top:6px">${nb("Встреча один на один по видеосвязи, 50 минут. Выберите, к кому хотите прийти.")}</p></div>
+  <div class="founders">${Object.entries(P).map(([k,v])=>`<button class="f ${S.founder===k?"sel":""} ${v[3]?"off":""}" data-founder="${k}" ${v[3]?'aria-disabled="true"':""} style="--bgc:var(${({anya:"--pink",lena:"--lilac",nastya:"--butter",angelina:"--sage"})[k]})"><b>${v[0]}</b><small>${v[3]?"Вернётся после декрета":v[2]}</small></button>`).join("")}</div>
+  <section class="card"><span class="label">Свободное время</span><div class="slots" style="margin-top:10px">${SLOTS.map(s=>`<button class="slot ${S.slot===s?"sel":""}" data-slot="${s}">${s}</button>`).join("")}</div></section>
+  <button class="btn" data-act="book" ${S.slot?"":"disabled"}>Записаться</button>
+  <p class="muted" style="font-size:.82rem;text-align:center">${nb("На тарифах 6 и 12 месяцев консультация уже включена.")}</p>`;
+};
+V.profile = () => {
+  const plan = S.paid ? PLANS.find(p=>p.id===S.paid) : null;
+  return `
+  <div><span class="label">Профиль</span><h1>${nb(firstName)}</h1></div>
+  <section class="card sub">
+    <div class="kv"><span class="muted">Подписка</span><b>${plan?plan.name:"Пробная неделя"}</b></div>
+    <div class="kv"><span class="muted">Действует до</span><b>${plan?"18 апреля":"24 января"}</b></div>
+    <div class="kv"><span class="muted">Собрано нитей</span><b>${NOW} из 7</b></div>
+  </section>
+  <button class="btn yellow" data-go="plans">${plan?"Продлить подписку":"Выбрать тариф"}</button>
+  <section class="card sky" style="display:grid;gap:10px">
+    <div class="row between"><b>Карта сфер</b>${S.testDone?'<span class="pill">Пройден</span>':""}</div>
+    <p class="muted" style="font-size:.9rem">${nb("14 коротких вопросов о вашей жизни. По ответам соберём карту: какие сферы сильные, а какие просят внимания.")}</p>
+    <button class="btn ghost" data-go="test">${S.testDone?"Открыть карту":"Пройти квиз"}</button>
+  </section>`;
+};
+V.plans = () => `
+  <div style="position:relative"><span class="label">Подписка</span><h1>Выберите тариф</h1>${DOODLE.spark("right:0;top:0")}<p class="muted" style="margin-top:6px">${nb("Чем длиннее тариф, тем выгоднее месяц. Первым участницам цена фиксируется навсегда.")}</p></div>
+  <div class="plans">${PLANS.map(p=>`<button class="plan ${S.plan===p.id?"sel":""}" data-plan="${p.id}"><span class="radio"></span><span><b>${p.name}${p.save?`<span class="save">${p.save}</span>`:""}</b><small>${nb(p.note)}</small></span><span class="price">${fmt(p.price)}</span></button>`).join("")}</div>
+  ${(()=>{const p=PLANS.find(x=>x.id===S.plan), inc=INCL[S.plan];
+    return `<section class="card incl fade lilac"><span class="label">Что входит · ${p.name}</span>
+    ${inc.list.length?`<ul class="ok">${inc.list.map(x=>`<li class="plus">${nb(x)}</li>`).join("")}</ul>`:""}
+    ${inc.base?`${inc.list.length?'<span class="label" style="margin-top:4px">И всё основное</span>':""}<ul class="ok">${BASE.map(x=>`<li>${nb(x)}</li>`).join("")}</ul>`:""}
+    ${inc.note?`<p class="muted" style="font-size:.85rem">${nb(inc.note)}</p>`:""}</section>`})()}
+  <button class="btn" data-act="pay">Оплатить ${fmt(PLANS.find(p=>p.id===S.plan).price)}</button>
+  <button class="btn ghost" data-go="profile">Назад</button>`;
+const sphereScores = () => THREADS.map((t,i)=>{
+  const ans = QUIZ.map((q,k)=>q[0]===i?S.quiz[k]:null).filter(x=>x!=null);
+  return ans.length ? Math.round(ans.reduce((a,b)=>a+SCORE[b],0)/ans.length) : 0;
+});
+function mapSVG(sc){
+  // карта сфер: 7 лепестков, длина лепестка = балл
+  const cx=130,cy=130,R=104; let g="",rings="";
+  [2.5,5,7.5,10].forEach(v=>rings+=`<circle cx="${cx}" cy="${cy}" r="${R*v/10}" fill="none" stroke="var(--line)" stroke-width="1"/>`);
+  THREADS.forEach((t,i)=>{
+    const a0=-Math.PI/2+i*2*Math.PI/7-0.36, a1=a0+0.72, r=R*sc[i]/10;
+    const p=(a,rr)=>`${(cx+Math.cos(a)*rr).toFixed(1)} ${(cy+Math.sin(a)*rr).toFixed(1)}`;
+    g+=`<path d="M${cx} ${cy} L${p(a0,r)} A${r} ${r} 0 0 1 ${p(a1,r)} Z" fill="var(--${t.c})" stroke="var(--ink)" stroke-width="1.5"/>`;
+    const am=(a0+a1)/2; g+=`<text x="${(cx+Math.cos(am)*(R+16)).toFixed(1)}" y="${(cy+Math.sin(am)*(R+16)+4).toFixed(1)}" text-anchor="middle" font-size="12" font-weight="800" fill="var(--ink)">${sc[i]}</text>`;
+  });
+  return `<svg viewBox="-10 -10 280 280" class="weave" role="img" aria-label="Карта сфер">${rings}${g}</svg>`;
+}
+V.test = () => {
+  if(S.testDone){
+    const sc = sphereScores(), low = sc.indexOf(Math.min(...sc)), high = sc.indexOf(Math.max(...sc));
+    return `
+  <div><span class="label">Карта сфер</span><h1>Ваш узор сейчас</h1></div>
+  <section class="card">${mapSVG(sc)}</section>
+  <section class="card bars">${THREADS.map((t,i)=>`<div class="bar" style="--c:var(--${t.c})"><span>${t.name}</span><span class="track"><b style="width:${sc[i]*10}%"></b></span><span>${sc[i]}</span></div>`).join("")}</section>
+  <section class="card" style="display:grid;gap:6px">
+    <p><b>${nb("Сильнее всего: «"+THREADS[high].name+"»")}</b></p>
+    <p class="muted">${nb("Больше всего внимания просит «"+THREADS[low].name+"». В этом цикле уроки этой недели будут для вас особенно важны.")}</p>
+  </section>
+  <p class="muted" style="font-size:.85rem">${nb("В конце цикла пройдёте квиз ещё раз и увидите, как изменилась карта.")}</p>
+  <button class="btn ghost" data-act="retest">Пройти заново</button>
+  <button class="btn ghost" data-go="profile">Назад</button>`;
+  }
+  const k=S.qi, q=QUIZ[k], t=THREADS[q[0]];
+  return `
+  <div><span class="label" style="color:var(--${t.c})">${t.name} · вопрос ${k+1} из ${QUIZ.length}</span>
+  <div class="progress" style="margin-top:10px"><b style="width:${k/QUIZ.length*100}%;background:var(--${t.c})"></b></div></div>
+  <h2 style="font-size:1.45rem">${nb(q[1])}</h2>
+  <div class="plans">${q[2].map((o,j)=>`<button class="plan ${S.quiz[k]===j?"sel":""}" data-ans="${j}" style="grid-template-columns:22px 1fr"><span class="radio"></span><span><b style="font-weight:600">${nb(o)}</b></span></button>`).join("")}</div>
+  ${k>0?'<button class="btn ghost" data-act="qback">Назад</button>':""}`;
+};
+/* ---------- таббар ---------- */
+const ICONS = {
+  home:'<svg viewBox="0 0 24 24"><path d="M3 8c3 3 6-3 9 0s6 3 9 0M3 12c3 3 6-3 9 0s6 3 9 0M3 16c3 3 6-3 9 0s6 3 9 0"/></svg>',
+  week:'<svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M8 3v4M16 3v4M3.5 10h17"/></svg>',
+  consult:'<svg viewBox="0 0 24 24"><path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v7a2.5 2.5 0 0 1-2.5 2.5H10l-4 4v-4h0A2 2 0 0 1 4 14z"/></svg>',
+  profile:'<svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.5"/><path d="M5 20c1.2-3.5 4-5 7-5s5.8 1.5 7 5"/></svg>',
+};
+const TABS = [["home","Узор"],["week","Неделя"],["consult","Консультация"],["profile","Профиль"]];
+const parentTab = t => ({plans:"profile",test:"profile"})[t] || t;
+
+function render(){
+  document.getElementById("app").innerHTML = `<div class="screen fade">${V[S.tab]()}</div>`;
+  document.getElementById("tabs").innerHTML = TABS.map(([k,l])=>`<button class="tab" data-go="${k}" ${parentTab(S.tab)===k?'aria-current="page"':""}>${ICONS[k]}${l}</button>`).join("");
+  try{ if(["plans","test"].includes(S.tab)) tg?.BackButton?.show(); else tg?.BackButton?.hide(); }catch(e){}
+  window.scrollTo(0,0);
+}
+try{ tg?.BackButton?.onClick(()=>{ S.tab="profile"; render(); }); }catch(e){}
+
+document.addEventListener("click", e=>{
+  const b = e.target.closest("button"); if(!b) return;
+  const d = b.dataset;
+  if(d.go){ S.tab=d.go; haptic(); render(); return; }
+  if(d.plan){ S.plan=d.plan; haptic(); save(); render(); return; }
+  if(d.founder){ if(P[d.founder][3]){ toast("Аня вернётся к консультациям после декрета"); return; } S.founder=d.founder; haptic(); save(); render(); return; }
+  if(d.ans!=null){ S.quiz[S.qi]=+d.ans; haptic(); if(S.qi<QUIZ.length-1){ S.qi++; } else { S.testDone=true; S.qi=0; } save(); setTimeout(render,180); return; }
+  if(d.slot){ S.slot=d.slot; haptic(); save(); render(); return; }
+  switch(d.act){
+    case "watch": toast("Тест: здесь откроется урок"); break;
+    case "ask": toast("Тест: бот попросит написать вопрос"); break;
+    case "book": S.booked={f:S.founder,slot:S.slot}; S.slot=null; haptic("medium"); save(); render(); toast("Вы записаны. Это тестовая запись"); break;
+    case "cancel": S.booked=null; save(); render(); toast("Запись отменена"); break;
+    case "pay": S.paid=S.plan; haptic("medium"); save(); S.tab="profile"; render(); toast("Тестовая оплата прошла, деньги не списаны"); break;
+        case "retest": S.testDone=false; S.quiz=[]; S.qi=0; save(); render(); break;
+    case "qback": S.qi=Math.max(0,S.qi-1); save(); render(); break;
+  }
+});
+render();
+</script>
+</body>
+</html>
