@@ -210,7 +210,7 @@ const store = {
   get(){ try{return JSON.parse(localStorage.getItem("uzor")||"{}")}catch(e){return{}} },
   set(v){ try{localStorage.setItem("uzor",JSON.stringify(v))}catch(e){} }
 };
-let S = Object.assign({tab:"home",plan:"m3",paid:null,founder:"lena",slot:null,booked:null,quiz:[],qi:0,testDone:false}, store.get(), {tab:"home"});
+let S = Object.assign({tab:"home",plan:"m3",paid:null,founder:"lena",slot:null,booked:null,quiz:[],qi:0,testDone:false}, store.get(), {tab:(["test","plans","week","consult","profile"].includes(location.hash.slice(1))?location.hash.slice(1):"home")});
 const save = () => store.set(S);
 if(!Array.isArray(S.quiz)||S.quiz.length<QUIZ.length){ if(S.testDone) S.testDone=false; if(!Array.isArray(S.quiz)) S.quiz=[]; }
 
